@@ -1,39 +1,17 @@
-✨ Diretório de Atividades em Java ✨
+# Atividades em Java
 
-Bem-vindo ao meu repositório de atividades em Java! ☕ Aqui você encontrará diversos projetos e exercícios que abrangem conceitos fundamentais e avançados da linguagem.
+Este repositório contém exercícios e exemplos de código em Java, criados para praticar e aprimorar habilidades de programação.
 
-🔧 Tecnologias Utilizadas
+## Estrutura do Repositório
 
-Java SE (Programas standalone e CLI)
+- **fundamentos/**: Exercícios básicos de Java.
+- **poo/**: Exercícios de Programação Orientada a Objetos.
+- **estruturas-de-dados/**: Implementações de estruturas de dados.
+- **algoritmos/**: Algoritmos clássicos em Java.
+- **projetos/**: Projetos completos.
 
-Java Swing (Interfaces gráficas)
+## Como Usar
 
-JavaFX (Aplicativos modernos)
-
-JDBC (Banco de dados com MySQL/PostgreSQL)
-
-APIs REST (Consumo e criação de serviços)
-
-JUnit (Testes unitários)
-
-📚 Conteúdo do Repositório
-
-💻 Programas e Exercícios
-
-POO (Programação Orientada a Objetos): Classes, herança, encapsulamento e polimorfismo
-
-CRUD Completo: Sistema de gerenciamento de entidades (exemplo: Cadastro de Clientes)
-
-Manipulação de Arquivos: Leitura e escrita em arquivos CSV/TXT
-
-Coleções e Generics: Listas, mapas e conjuntos
-
-🛠️ Projetos Práticos
-
-Calculadora com Interface Gráfica
-
-Sistema de Caixa de Supermercado
-
-Aplicativo de Agenda Integrado ao Google Calendar
-
-Gerenciador de Tarefas e Cronogramas
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/repositorio-java.git
