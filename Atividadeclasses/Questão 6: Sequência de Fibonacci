@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Fibonacci {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Entrada do número de termos
+        System.out.print("Digite a quantidade de termos da sequência de Fibonacci: ");
+        int n = scanner.nextInt();
+
+        if (n <= 0) {
+            System.out.println("Por favor, insira um número maior que zero.");
+        } else {
+            System.out.println("Sequência de Fibonacci com " + n + " termos:");
+            gerarFibonacci(n);
+        }
+
+        scanner.close();
+    }
+
+    // Método para gerar a sequência de Fibonacci
+    public static void gerarFibonacci(int n) {
+        int primeiro = 0, segundo = 1;
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(primeiro + " ");
+
+            // Atualiza os valores para o próximo termo
+            int proximo = primeiro + segundo;
+            primeiro = segundo;
+            segundo = proximo;
+        }
+    }
+}
