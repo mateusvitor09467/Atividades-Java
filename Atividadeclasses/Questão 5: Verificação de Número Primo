@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class NumeroPrimo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Entrada do número
+        System.out.print("Digite um número inteiro positivo: ");
+        int num = scanner.nextInt();
+
+        if (num <= 1) {
+            System.out.println(num + " não é um número primo.");
+        } else {
+            boolean ehPrimo = verificarPrimo(num);
+
+            // Exibição do resultado
+            if (ehPrimo) {
+                System.out.println(num + " é um número primo.");
+            } else {
+                System.out.println(num + " não é um número primo.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    // Método para verificar se um número é primo
+    public static boolean verificarPrimo(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
