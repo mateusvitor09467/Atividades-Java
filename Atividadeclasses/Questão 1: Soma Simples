@@ -1,5 +1,6 @@
 Questão 1: Soma Simples
-Crie um programa que solicite dois números ao usuário e exiba a soma deles.import java.util.Scanner;
+Crie um programa que solicite dois números ao usuário e exiba a soma deles.
+import java.util.Scanner;
 
 public class SomaSimples {
     public static void main(String[] args) {
