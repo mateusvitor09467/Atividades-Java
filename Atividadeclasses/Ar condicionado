@@ -1,0 +1,129 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+abstract class ArCondicionado {
+    protected int codigo;
+    protected String marca;
+    protected int btu;
+    protected boolean defeito;
+    protected String tipoDefeito;
+
+    public ArCondicionado(int codigo, String marca, int btu, boolean defeito, String tipoDefeito) {
+        this.codigo = codigo;
+        this.marca = marca;
+        this.btu = btu;
+        this.defeito = defeito;
+        this.tipoDefeito = tipoDefeito;
+    }
+
+    @Override
+    public String toString() {
+        String info = "Código: " + codigo + "\nMarca: " + marca + "\nBTU: " + btu;
+        info += "\nDefeito: " + (defeito ? "Sim" : "Não");
+        if (defeito) {
+            info += "\nTipo de Defeito: " + tipoDefeito;
+        }
+        return info;
+    }
+}
+
+class Splinter extends ArCondicionado {
+    private String tipos;
+    private String tamanho;
+
+    public Splinter(int codigo, String marca, int btu, boolean defeito, String tipoDefeito, String tipos, String tamanho) {
+        super(codigo, marca, btu, defeito, tipoDefeito);
+        this.tipos = tipos;
+        this.tamanho = tamanho;
+    }
+
+    @Override
+    public String toString() {
+        return "Modelo: Splinter\n" + super.toString() + "\nTipo(s): " + tipos + "\nTamanho: " + tamanho + "\n------------------";
+    }
+}
+
+class Portatil extends ArCondicionado {
+    private int voltagem;
+    private String cor;
+
+    public Portatil(int codigo, String marca, int btu, boolean defeito, String tipoDefeito, int voltagem, String cor) {
+        super(codigo, marca, btu, defeito, tipoDefeito);
+        this.voltagem = voltagem;
+        this.cor = cor;
+    }
+
+    @Override
+    public String toString() {
+        return "Modelo: Portátil\n" + super.toString() + "\nVoltagem: " + voltagem + "\nCor: " + cor + "\n------------------";
+    }
+}
+
+public class ControleArCondicionado {
+    public static void main(String[] args) {
+        ArrayList<ArCondicionado> lista = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int opcao = 0;
+        do {
+            System.out.println("Menu:");
+            System.out.println("1 - Cadastrar Ar Condicionado");
+            System.out.println("2 - Relatório");
+            System.out.println("3 - Sair");
+            System.out.print("Escolha: ");
+            opcao = sc.nextInt();
+            sc.nextLine();
+            switch (opcao) {
+                case 1:
+                    System.out.print("Informe o modelo (Splinter/Portatil): ");
+                    String modelo = sc.nextLine();
+                    System.out.print("Informe o código: ");
+                    int codigo = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Informe a marca: ");
+                    String marca = sc.nextLine();
+                    System.out.print("Informe o BTU: ");
+                    int btu = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("O aparelho possui defeito? (S/N): ");
+                    String defeitoStr = sc.nextLine();
+                    boolean temDefeito = defeitoStr.equalsIgnoreCase("S");
+                    String tipoDefeito = "";
+                    if (temDefeito) {
+                        System.out.print("Informe o tipo de defeito: ");
+                        tipoDefeito = sc.nextLine();
+                    }
+                    if (modelo.equalsIgnoreCase("Splinter")) {
+                        System.out.print("Informe o(s) tipo(s): ");
+                        String tipos = sc.nextLine();
+                        System.out.print("Informe o tamanho: ");
+                        String tamanho = sc.nextLine();
+                        Splinter splinter = new Splinter(codigo, marca, btu, temDefeito, tipoDefeito, tipos, tamanho);
+                        lista.add(splinter);
+                    } else if (modelo.equalsIgnoreCase("Portatil")) {
+                        System.out.print("Informe a voltagem: ");
+                        int voltagem = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Informe a cor: ");
+                        String cor = sc.nextLine();
+                        Portatil portatil = new Portatil(codigo, marca, btu, temDefeito, tipoDefeito, voltagem, cor);
+                        lista.add(portatil);
+                    } else {
+                        System.out.println("Modelo inválido!");
+                    }
+                    break;
+                case 2:
+                    System.out.println("\nRelatório de Ar Condicionado:");
+                    for (ArCondicionado ar : lista) {
+                        System.out.println(ar);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Encerrando o programa.");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 3);
+        sc.close();
+    }
+}
