@@ -1,0 +1,174 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Classe abstrata que define a estrutura básica para os animais
+abstract class Animal {
+    protected String nome; // Nome do animal
+
+    // Construtor que define o nome do animal
+    public Animal(String nome) {
+        this.nome = nome;
+    }
+
+    // "Pega o nome do animal "Getter para o nome do animal
+    public String getNome() {
+        return nome;
+    }
+
+    // Método abstrato que deve ser implementado por cada tipo de animal
+    public abstract void fazerSom();
+}
+
+// Classe Cachorro que herda de Animal e implementa o método fazerSom
+class Cachorro extends Animal {
+    public Cachorro() {
+        super("Cachorro"); // Passa o nome "Cachorro" para a classe pai (Animal)
+    }
+
+    // Implementação do som que o cachorro faz
+    @Override
+    public void fazerSom() {
+        System.out.println("O cachorro late: Au Au!");
+    }
+}
+
+// Classe Gato que herda de Animal e implementa o método fazerSom
+class Gato extends Animal {
+    public Gato() {
+        super("Gato"); // Passa o nome "Gato" para a classe pai (Animal)
+    }
+
+    // Implementação do som que o gato faz
+    @Override
+    public void fazerSom() {
+        System.out.println("O gato mia: Miau!");
+    }
+}
+
+// Classe Cavalo que herda de Animal e implementa o método fazerSom
+class Cavalo extends Animal {
+    public Cavalo() {
+        super("Cavalo"); // Passa o nome "Cavalo" para a classe pai (Animal)
+    }
+
+    // Implementação do som que o cavalo faz
+    @Override
+    public void fazerSom() {
+        System.out.println("O Cavalo relincha: ih-ih-ih");
+    }
+}
+
+// Classe Leão que herda de Animal e implementa o método fazerSom
+class Leao extends Animal {
+    public Leao() {
+        super("Leão"); // Passa o nome "Leão" para a classe pai (Animal)
+    }
+
+    // Implementação do som que o leão faz
+    @Override
+    public void fazerSom() {
+        System.out.println("O Leão rugido: roar");
+    }
+}
+
+// Enum que define os tipos de animais possíveis no programa
+enum TipoAnimal {
+    CACHORRO, GATO, CAVALO, LEAO;
+
+    // Método para converter a entrada do usuário em um valor válido do enum
+    public static TipoAnimal fromString(String tipo) {
+        try {
+            return TipoAnimal.valueOf(tipo.toUpperCase()); // Converte a string para o tipo Enum correspondente
+        } catch (IllegalArgumentException e) {
+            return null; // Retorna null se o tipo não for um valor válido do Enum
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Cria um scanner para ler a entrada do usuário
+        List<Animal> animais = new ArrayList<>(); // Lista que armazenará os animais cadastrados
+
+        // Loop principal que exibe o menu para o usuário
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1 - Adicionar novo animal");
+            System.out.println("2 - Fazer um animal emitir som");
+            System.out.println("3 - Sair");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt(); // Lê a opção escolhida pelo usuário
+            scanner.nextLine();  // Consome a linha restante após a leitura do número
+
+            // Switch para tratar a escolha do usuário
+            switch (opcao) {
+                // Opção 1: Adicionar um novo animal
+                case 1:
+                    System.out.println("Escolha o tipo de animal (Cachorro/Gato/Cavalo/Leão): ");
+                    String tipoStr = scanner.nextLine().trim(); // Lê o tipo de animal e remove espaços extras
+                    TipoAnimal tipo = TipoAnimal.fromString(tipoStr); // Converte a entrada para um valor do Enum TipoAnimal
+
+                    // Verifica se o tipo de animal é válido
+                    if (tipo == null) {
+                        System.out.println("Tipo de animal desconhecido.");
+                    } else {
+                        // Adiciona o animal correspondente ao tipo escolhido
+                        switch (tipo) {
+                            case CACHORRO:
+                                animais.add(new Cachorro()); // Adiciona um novo cachorro
+                                System.out.println("Cachorro adicionado.");
+                                break;
+                            case GATO:
+                                animais.add(new Gato()); // Adiciona um novo gato
+                                System.out.println("Gato adicionado.");
+                                break;
+                            case CAVALO:
+                                animais.add(new Cavalo()); // Adiciona um novo cavalo
+                                System.out.println("Cavalo adicionado.");
+                                break;
+                            case LEAO:
+                                animais.add(new Leao()); // Adiciona um novo leão
+                                System.out.println("Leão adicionado.");
+                                break;
+                        }
+                    }
+                    break;
+
+                // Opção 2: Fazer um animal emitir som
+                case 2:
+                    // Verifica se existem animais cadastrados
+                    if (animais.isEmpty()) {
+                        System.out.println("Nenhum animal cadastrado.");
+                    } else {
+                        // Exibe a lista de animais cadastrados
+                        System.out.println("Animais cadastrados:");
+                        for (int i = 0; i < animais.size(); i++) {
+                            System.out.println((i + 1) + " - " + animais.get(i).getNome()); // Exibe o nome do animal
+                        }
+                        System.out.print("Escolha um animal pelo número: ");
+                        int escolha = scanner.nextInt(); // Lê a escolha do animal
+
+                        // Verifica se a escolha é válida
+                        if (escolha > 0 && escolha <= animais.size()) {
+                            animais.get(escolha - 1).fazerSom(); // Chama o método fazerSom do animal escolhido
+                        } else {
+                            System.out.println("Escolha inválida.");
+                        }
+                    }
+                    break;
+
+                // Opção 3: Sair do programa
+                case 3:
+                    System.out.println("Saindo...");
+                    scanner.close(); // Fecha o scanner para liberar recursos
+                    return; // Encerra o programa
+
+                // Opção inválida
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
+    }
+}
