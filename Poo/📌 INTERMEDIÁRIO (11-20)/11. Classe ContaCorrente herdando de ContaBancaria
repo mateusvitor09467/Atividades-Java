@@ -1,0 +1,9 @@
+// 11. Classe ContaCorrente herdando de ContaBancaria
+class ContaCorrente extends ContaBancaria {
+    private double taxaManutencao;
+
+    public ContaCorrente(double saldoInicial, double taxaManutencao) {
+        super(saldoInicial);
+        this.taxaManutencao = taxaManutencao;
+    }
+}
