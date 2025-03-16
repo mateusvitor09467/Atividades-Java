@@ -1,0 +1,12 @@
+// 8. Classe Funcionario
+class Funcionario {
+    private double salario;
+
+    public Funcionario(double salario) {
+        this.salario = salario;
+    }
+
+    public void aumentarSalario(double percentual) {
+        salario += salario * percentual / 100;
+    }
+}
