@@ -1,0 +1,25 @@
+// 10. Classe Celular
+class Celular {
+    private String marca;
+    private String modelo;
+    private int bateria;
+
+    public Celular(String marca, String modelo, int bateria) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.bateria = bateria;
+    }
+
+    public void usar(int consumo) {
+        if (bateria - consumo < 0) {
+            System.out.println("Bateria insuficiente!");
+        } else {
+            bateria -= consumo;
+        }
+    }
+
+    public void carregar() {
+        bateria = 100;
+        System.out.println("Celular carregado!");
+    }
+}
