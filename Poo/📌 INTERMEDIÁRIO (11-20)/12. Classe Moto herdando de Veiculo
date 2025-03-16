@@ -1,0 +1,15 @@
+// 12. Classe Moto herdando de Veiculo
+class Veiculo {
+    protected String marca;
+    protected String modelo;
+}
+
+class Moto extends Veiculo {
+    private int cilindradas;
+
+    public Moto(String marca, String modelo, int cilindradas) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cilindradas = cilindradas;
+    }
+}
